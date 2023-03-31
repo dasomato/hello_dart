@@ -1,7 +1,7 @@
 typedef PlayerList = List<Map<String, dynamic>>;
 
 class Player {
-  final String name;
+  String name;
   String team;
   int xp, age;
 
@@ -19,28 +19,11 @@ class Player {
 }
 
 void main() {
-  PlayerList apiData = [
-    {
-      'name': 'nico',
-      'age': 30,
-      'team': 'red',
-      'xp': 1500,
-    },
-    {
-      'name': 'lynn',
-      'age': 25,
-      'team': 'blue',
-      'xp': 1600,
-    },
-    {
-      'name': 'nana',
-      'age': 40,
-      'team': 'blue',
-      'xp': 1700,
-    },
-  ];
-  apiData.forEach((playerJson) {
-    var player = Player.fromJson(playerJson);
-    player.sayHello();
-  });
+  var nico = Player(name:'nico', xp: 1200, age: 33, team:'red');
+  var lynn = nico
+  ..name = 'las'
+  ..xp = 1200000
+  ..team = 'blue'
+  ..age = 23
+  ..sayHello();
 }
