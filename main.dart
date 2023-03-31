@@ -1,3 +1,5 @@
+typedef PlayerList = List<Map<String, dynamic>>;
+
 class Player {
   final String name;
   String team;
@@ -5,17 +7,11 @@ class Player {
 
   Player({required this.name, required this.xp, required this.team, this.age = 20});
 
-  Player.createBluePlayer({required String name, required int age, }) :
-  this.age = age,
-  this.name = name,
-  this.team = 'blue',
-  this.xp = 0;
-  
-  Player.createRedPlayer({required String name, required int age, }) :
-  this.age = age,
-  this.name = name,
-  this.team = 'red',
-  this.xp = 0;
+  Player.fromJson(Map<String, dynamic> playerJson) :
+    name = playerJson['name'],
+    xp = playerJson['xp'],
+    age = playerJson['age'],
+    team = playerJson['team'];
 
   void sayHello() {
     print("Hi my name is ${name}");
@@ -23,21 +19,28 @@ class Player {
 }
 
 void main() {
-  var player = Player(
-    name: "nico", 
-    xp: 15000,
-    team: 'korean', );
-
-  var bluePlayer = Player.createBluePlayer(name: 'nico', age:30);    
-  var redPlayer = Player.createRedPlayer(name: 'lynn', age:28);    
-
-  print(bluePlayer.name);
-  print(bluePlayer.age);
-  print(redPlayer.name);
-  print(redPlayer.age);
-
-  print(player.name);
-  print(player.xp);
-  print(player.age);
-  player.sayHello();
+  PlayerList apiData = [
+    {
+      'name': 'nico',
+      'age': 30,
+      'team': 'red',
+      'xp': 1500,
+    },
+    {
+      'name': 'lynn',
+      'age': 25,
+      'team': 'blue',
+      'xp': 1600,
+    },
+    {
+      'name': 'nana',
+      'age': 40,
+      'team': 'blue',
+      'xp': 1700,
+    },
+  ];
+  apiData.forEach((playerJson) {
+    var player = Player.fromJson(playerJson);
+    player.sayHello();
+  });
 }
