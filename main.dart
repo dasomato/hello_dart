@@ -1,9 +1,13 @@
 typedef PlayerList = List<Map<String, dynamic>>;
 
+enum Team {red, blue}
+enum XPLevel {beginner, medium, pro}
+
 class Player {
   String name;
-  String team;
-  int xp, age;
+  Team team;
+  XPLevel xp;
+  int age;
 
   Player({required this.name, required this.xp, required this.team, this.age = 20});
 
@@ -19,11 +23,12 @@ class Player {
 }
 
 void main() {
-  var nico = Player(name:'nico', xp: 1200, age: 33, team:'red');
+  var nico = Player(name:'nico', xp: XPLevel.beginner, age: 33, team:Team.red);
   var lynn = nico
   ..name = 'las'
-  ..xp = 1200000
-  ..team = 'blue'
+  ..xp = XPLevel.pro
+  ..team = Team.blue
   ..age = 23
   ..sayHello();
+  print(lynn.team.toString());
 }
